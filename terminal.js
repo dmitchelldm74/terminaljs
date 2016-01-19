@@ -23,7 +23,7 @@ function searchKeyPress(e)
         if (input2[0] == "open"){
             window.open(input2[1]);
             var d = "<br>Opened New tab...";
-            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+            //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "wget"){
             //window.open(input2[1]);
@@ -32,57 +32,56 @@ function searchKeyPress(e)
             link.download = input2[1];
             link.href = input2[1];
             link.click();
-            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+            //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "new"){
             window.open(window.location.href);
             var d = "<br>Opened New Terminal tab...";
-            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+            //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "history"){
             var a = localStorage.getItem("history");
             var d = a.replace("null", "");
-            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+            //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
             //alert(d);
         }
         if (input2[0] == "clear(history)"){
             localStorage.removeItem("history");
             var d = "<br>History cleared";
-            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+            //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "touch"){
             localStorage.setItem(input2[1], "");
             var d = '<br>Created file: ' + input2[1];
             localStorage.setItem("filesdemo", localStorage.getItem("filesdemo") + "<br>" + input2[1]);
-            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+            //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "edit"){
-            var d = '<br>Editing file: ' + input2[0];
-            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><div id="eit" contenteditable="true" onkeyup="save(' + "'" + input2[1] + "'" + ');"></div>' + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+            var d = '<br>Editing file: ' + input2[0] + '<br><div id="eit" contenteditable="true" onkeyup="save(' + "'" + input2[1] + "'" + ');"></div>';
         }
         if (input2[0] == "read"){
             var d = '<br>Reading file "' + input2[1] + '"...<br>' + localStorage.getItem(input2[1]);
-            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+            //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "location"){
             var d = '<br>You are located at: <a href="' + window.location.href + '">' + window.location.href + '</a>';
-            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+            //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "set"){
             localStorage.setItem("userdemoterminal", input2[1]);
             var d = '<br>Account Set!';
-            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+            //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "reload"){
             location.reload();
         }
         if (input2[0] == "help"){
             var d = '<br><br>Get Your History -- history<br>Clear Your History -- clear(history)<br>Create file -- touch (filename)<br>edit a file -- edit (filename)<br>Read a file -- read (filename)<br>Window Location -- location<br>Change Name -- set (name)<br>Reload Page -- reload<br>List of your files -- ls<br>Download a file -- download (filename)<br>Remove a file -- rm (filename)<br>Open a New Terminal -- new<br>Open a New Tab with your url -- open (url)<br>Download a file -- wget (url)<br><br>';
-            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+            //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "ls"){
             var d = "<br>" + localStorage.getItem("filesdemo");
-            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+            //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
             }
         if (input2[0] == "download"){
             var text = localStorage.getItem(input2[1]);
@@ -95,16 +94,16 @@ function searchKeyPress(e)
             element.click();
             document.body.removeChild(element);
             var d = "<br>File downloaded...";
-            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+            //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "rm"){
             localStorage.removeItem(input2[1]);
             var lsa = localStorage.getItem("filesdemo");
             localStorage.setItem("filesdemo", lsa.replace(input2[1], ""));
             var d = "<br>File deleted...";
-            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+            //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
-        
+        document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         return false;
     }
     return true;
