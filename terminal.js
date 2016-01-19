@@ -89,7 +89,7 @@ function searchKeyPress(e)
             location.reload();
         }
         if (input2[0] == "help"){
-            var d = '<br><br>Get Your History -- history<br>Clear Your History -- clear(history)<br>Create file -- touch (filename)<br>edit a file -- cat \\ (filename)<br>Read a file -- cat / (filename)<br>Window Location -- location<br>Change Name -- set (name)<br>Change color -- bash.colors color1= (backgroundcolor) color2= (textcolor)<br>Reload Page -- reload<br>List of your files -- ls<br>Run a js file -- run js (filename)<br>Download a file -- download (filename)<br>Remove a file -- rm (filename)<br>Open a New Terminal -- new<br>Open a New Tab with your url -- open (url)<br>Download a file -- wget (url)<br>Get last command -- last<br>';
+            var d = '<br><br>Get Your History -- history<br>Clear Your History -- clear(history)<br>Create file -- touch (filename)<br>edit a file -- cat \\ (filename)<br>Read a file -- cat / (filename)<br>Window Location -- location<br>Change Name -- set (name)<br>Change color -- bash.colors color1= (backgroundcolor) color2= (textcolor)<br>Reload Page -- reload<br>List of your files -- ls<br>Run a js file -- run js (filename)<br>Download a file -- download (filename)<br>Remove a file -- rm (filename)<br>Open a New Terminal -- new<br>Open a New Tab with your url -- open (url)<br>Download a file -- wget (url)<br>Add a command -- alias (name) (script to run)<br>run alias -- ./ (command name)<br>List of personal commands -- bashrc<br>Get last command -- last<br>';
             //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "ls"){
@@ -128,6 +128,19 @@ function searchKeyPress(e)
         if (input2[0] == "run" && input2[1] == "js"){
             eval(localStorage.getItem(input2[2]));
             var d = "<br>JavaScript is running...";
+        }
+        if (input2[0] == "alias"){
+            localStorage.setItem("bashrc", localStorage.getItem("bashrc") + "<br>" + input2[1]);
+            localStorage.setItem(input2[1], input2[2]);
+            var d = "<br>Alias set!";
+        }
+        if (input2[0] == "./"){
+            var bna = localStorage.getItem(input2[1]);
+            eval(localStorage.getItem(bna));
+            var d = "";
+        }
+        if (input2[0] == "bashrc"){
+            var d = localStorage.getItem("bashrc").replace("null", "");
         }
         localStorage.setItem("terminallast", input);
         document.getElementById('terminal').innerHTML = u + '<br>bash: ' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">' + d23 + '</span>';
