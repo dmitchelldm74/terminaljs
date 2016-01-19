@@ -20,6 +20,25 @@ function searchKeyPress(e)
         var u = sd.replace('id="eit"', '');
         localStorage.setItem("history", localStorage.getItem("history") + "<br>" + input);
         var d = ' not recognized as a command.';
+        if (input2[0] == "open"){
+            window.open(input2[1]);
+            var d = "<br>Opened New tab...";
+            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+        }
+        if (input2[0] == "wget"){
+            //window.open(input2[1]);
+            var d = "<br>Downloading...";
+            var link = document.createElement("a");
+            link.download = input2[1];
+            link.href = input2[1];
+            link.click();
+            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+        }
+        if (input2[0] == "new"){
+            window.open(window.location.href);
+            var d = "<br>Opened New Terminal tab...";
+            document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+        }
         if (input2[0] == "history"){
             var a = localStorage.getItem("history");
             var d = a.replace("null", "");
@@ -58,7 +77,7 @@ function searchKeyPress(e)
             location.reload();
         }
         if (input2[0] == "help"){
-            var d = '<br><br>Get Your History -- history<br>Clear Your History -- clear(history)<br>Create file -- touch (filename)<br>edit a file -- edit (filename)<br>Read a file -- read (filename)<br>Window Location -- location<br>Change Name -- set (name)<br>Reload Page -- reload<br>List of your files -- ls<br>Download a file -- download (filename)<br>Remove a file -- rm (filename)<br><br>';
+            var d = '<br><br>Get Your History -- history<br>Clear Your History -- clear(history)<br>Create file -- touch (filename)<br>edit a file -- edit (filename)<br>Read a file -- read (filename)<br>Window Location -- location<br>Change Name -- set (name)<br>Reload Page -- reload<br>List of your files -- ls<br>Download a file -- download (filename)<br>Remove a file -- rm (filename)<br>Open a New Terminal -- new<br>Open a New Tab with your url -- open (url)<br>Download a file -- wget (url)<br><br>';
             document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "ls"){
