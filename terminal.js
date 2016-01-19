@@ -59,7 +59,7 @@ function searchKeyPress(e)
         if (input2[0] == "edit"){
             var d = '<br>Editing file: ' + input2[0] + '<br><div id="eit" contenteditable="true" onkeyup="save(' + "'" + input2[1] + "'" + ');"></div>';
         }
-        if (input2[0] == "read"){
+        if (input2[0] == "cat"){
             var d = '<br>Reading file "' + input2[1] + '"...<br>' + localStorage.getItem(input2[1]);
             //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
@@ -99,7 +99,7 @@ function searchKeyPress(e)
         if (input2[0] == "rm"){
             localStorage.removeItem(input2[1]);
             var lsa = localStorage.getItem("filesdemo");
-            localStorage.setItem("filesdemo", lsa.replace(input2[1], ""));
+            localStorage.setItem("filesdemo", lsa.replace("<br>" + input2[1], ""));
             var d = "<br>File deleted...";
             //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
