@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>DEMo Terminal Online</title>
+<link rel="stylesheet" href="terminal.css">
+<script src="terminal.js"></script>
+</head>
+<body onload="user();">
+Online Terminal Created by: Daniel Mitchell<br>
+help for list of commands.<br>
+<p id="terminal" class="hidden">
+      <span class="prompt"><content id="user"></content></span>
+      <span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input"> </span>
+</p>
+</body>
+</html>
