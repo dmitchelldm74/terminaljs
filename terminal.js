@@ -5,6 +5,14 @@ function user(){
 function save(n){
     localStorage.setItem(n, document.getElementById('eit').innerHTML);
 }
+/*function up(e){
+    e = e || window.event;
+    if (e.keyCode == 38){
+        document.getElementById("input").innerText = localStorage.getItem("terminallast");
+        return false;
+    }
+    return true;
+}*/
 function searchKeyPress(e)
 {
     e = e || window.event;
@@ -76,7 +84,7 @@ function searchKeyPress(e)
             location.reload();
         }
         if (input2[0] == "help"){
-            var d = '<br><br>Get Your History -- history<br>Clear Your History -- clear(history)<br>Create file -- touch (filename)<br>edit a file -- edit (filename)<br>Read a file -- read (filename)<br>Window Location -- location<br>Change Name -- set (name)<br>Reload Page -- reload<br>List of your files -- ls<br>Download a file -- download (filename)<br>Remove a file -- rm (filename)<br>Open a New Terminal -- new<br>Open a New Tab with your url -- open (url)<br>Download a file -- wget (url)<br><br>';
+            var d = '<br><br>Get Your History -- history<br>Clear Your History -- clear(history)<br>Create file -- touch (filename)<br>edit a file -- edit (filename)<br>Read a file -- cat (filename)<br>Window Location -- location<br>Change Name -- set (name)<br>Reload Page -- reload<br>List of your files -- ls<br>Download a file -- download (filename)<br>Remove a file -- rm (filename)<br>Open a New Terminal -- new<br>Open a New Tab with your url -- open (url)<br>Download a file -- wget (url)<br><br>';
             //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "ls"){
@@ -103,6 +111,11 @@ function searchKeyPress(e)
             var d = "<br>File deleted...";
             //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
+        if (input2[0] == "last"){
+            document.getElementById("input").innerText = localStorage.getItem("terminallast");
+            var d = "<br>Last Command: " + localStorage.getItem("terminallast");
+        }
+        localStorage.setItem("terminallast", input);
         document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         return false;
     }
