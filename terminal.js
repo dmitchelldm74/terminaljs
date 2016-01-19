@@ -13,7 +13,7 @@ function searchKeyPress(e)
         var input = document.getElementById('input').innerHTML;
         var input2 = input.split(" ");
         var a = localStorage.getItem("userdemoterminal");
-        var ab = a.replace("null", "") + '@demoterminalsjs:~$';
+        var ab = a.replace("null", "") + '@terminalsjs:~$';
         var s = document.getElementById('terminal').innerHTML;
         var t = s.replace('<span id="input"', '<span id="history"');
         var sd = t.replace('contenteditable="true"', '');
