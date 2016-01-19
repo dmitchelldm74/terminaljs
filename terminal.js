@@ -1,6 +1,10 @@
 function user(){
     var a = localStorage.getItem("userdemoterminal");
     document.getElementById("user").innerHTML = a.replace("null", "") + '@terminaljs:~$';
+    var b = localStorage.getItem("bash.colors");
+    var c = b.split("<!>");
+    document.body.style.background = c[1];
+    document.body.style.color = c[2];
 }
 function save(n){
     localStorage.setItem(n, document.getElementById('eit').innerHTML);
@@ -28,6 +32,7 @@ function searchKeyPress(e)
         var u = sd.replace('id="eit"', '');
         localStorage.setItem("history", localStorage.getItem("history") + "<br>" + input);
         var d = ' not recognized as a command.';
+        var d23 = ' ';
         if (input2[0] == "open"){
             window.open(input2[1]);
             var d = "<br>Opened New tab...";
@@ -64,11 +69,11 @@ function searchKeyPress(e)
             localStorage.setItem("filesdemo", localStorage.getItem("filesdemo") + "<br>" + input2[1]);
             //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
-        if (input2[0] == "edit"){
-            var d = '<br>Editing file: ' + input2[0] + '<br><div id="eit" contenteditable="true" onkeyup="save(' + "'" + input2[1] + "'" + ');"></div>';
+        if (input2[0] == "cat" && input2[1] == "\\"){
+            var d = '<br>Editing file: ' + input2[2] + '<br><div id="eit" contenteditable="true" onkeyup="save(' + "'" + input2[2] + "'" + ');"></div>';
         }
-        if (input2[0] == "cat"){
-            var d = '<br>Reading file "' + input2[1] + '"...<br>' + localStorage.getItem(input2[1]);
+        if (input2[0] == "cat" && input2[1] == "/"){
+            var d = '<br>Reading file "' + input2[2] + '"...<br>' + localStorage.getItem(input2[2]);
             //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "location"){
@@ -84,7 +89,7 @@ function searchKeyPress(e)
             location.reload();
         }
         if (input2[0] == "help"){
-            var d = '<br><br>Get Your History -- history<br>Clear Your History -- clear(history)<br>Create file -- touch (filename)<br>edit a file -- edit (filename)<br>Read a file -- cat (filename)<br>Window Location -- location<br>Change Name -- set (name)<br>Reload Page -- reload<br>List of your files -- ls<br>Download a file -- download (filename)<br>Remove a file -- rm (filename)<br>Open a New Terminal -- new<br>Open a New Tab with your url -- open (url)<br>Download a file -- wget (url)<br><br>';
+            var d = '<br><br>Get Your History -- history<br>Clear Your History -- clear(history)<br>Create file -- touch (filename)<br>edit a file -- cat \\ (filename)<br>Read a file -- cat / (filename)<br>Window Location -- location<br>Change Name -- set (name)<br>Change color -- bash.colors color1= (backgroundcolor) color2= (textcolor)<br>Reload Page -- reload<br>List of your files -- ls<br>Run a js file -- run js (filename)<br>Download a file -- download (filename)<br>Remove a file -- rm (filename)<br>Open a New Terminal -- new<br>Open a New Tab with your url -- open (url)<br>Download a file -- wget (url)<br>Get last command -- last<br>';
             //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "ls"){
@@ -112,11 +117,20 @@ function searchKeyPress(e)
             //document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
         }
         if (input2[0] == "last"){
-            document.getElementById("input").innerText = localStorage.getItem("terminallast");
+            //document.getElementById("input").innerText = localStorage.getItem("terminallast");
             var d = "<br>Last Command: " + localStorage.getItem("terminallast");
+            var d23 = localStorage.getItem("terminallast");
+        }
+        if (input2[0] == "bash.colors"){
+            localStorage.setItem("bash.colors", "<!>" + input2[2] + "<!>" + input2[4] + "<!>");
+            var d = "<br>Changed Bash Colors, colors saved in bash.colors file...";
+        }
+        if (input2[0] == "run" && input2[1] == "js"){
+            eval(localStorage.getItem(input2[2]));
+            var d = "<br>JavaScript is running...";
         }
         localStorage.setItem("terminallast", input);
-        document.getElementById('terminal').innerHTML = u + '<br>' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">  </span>';
+        document.getElementById('terminal').innerHTML = u + '<br>bash: ' + input + d + '<br><span class="prompt"><content>' + ab + ' </content></span><span id="input" onkeypress="return searchKeyPress(event);" contenteditable="true" class="input">' + d23 + '</span>';
         return false;
     }
     return true;
