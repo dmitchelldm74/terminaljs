@@ -9,6 +9,7 @@ function user(){
     }
     catch(err){
         document.getElementById("user").innerHTML = "guest@terminaljs:~$";
+        localStorage.setItem("bash.colors", "<!>black<!>white<!>");
     }
 }
 function save(n){
