@@ -1,10 +1,15 @@
 function user(){
+    try{
     var a = localStorage.getItem("userdemoterminal");
     document.getElementById("user").innerHTML = a.replace("null", "") + '@terminaljs:~$';
     var b = localStorage.getItem("bash.colors");
     var c = b.split("<!>");
     document.body.style.background = c[1];
     document.body.style.color = c[2];
+    }
+    catch(err){
+        document.getElementById("user").innerHTML = "guest@terminaljs:~$";
+    }
 }
 function save(n){
     localStorage.setItem(n, document.getElementById('eit').innerHTML);
@@ -24,8 +29,13 @@ function searchKeyPress(e)
     {
         var input = document.getElementById('input').innerHTML;
         var input2 = input.split(" ");
-        var a = localStorage.getItem("userdemoterminal");
-        var ab = a.replace("null", "") + '@terminalsjs:~$';
+        try{
+            var a = localStorage.getItem("userdemoterminal");
+            var ab = a.replace("null", "") + '@terminalsjs:~$';
+        }
+        catch(err){
+            var ab = "guest@terminaljs:~$";    
+        }
         var s = document.getElementById('terminal').innerHTML;
         var t = s.replace('<span id="input"', '<span id="history"');
         var sd = t.replace('contenteditable="true"', '');
